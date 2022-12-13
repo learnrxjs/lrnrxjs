@@ -1,0 +1,21 @@
+{
+  "name": "lrnrxjs",
+  "version": "1.0.0",
+  "description": "Портал изучения технологии RxJS",
+  "scripts": {
+    "start": "pnpm --filter \"./projects/*\" run start"
+  },
+  "keywords": [
+    "rxjs",
+    "learn"
+  ],
+  "author": {
+    "name": "Sam Bulatov",
+    "email": "mephistorine@gmail.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=7"
+  }
+}

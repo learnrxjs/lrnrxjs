@@ -1,0 +1,15 @@
+{
+  "name": "lrnrxjs-core",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "astro dev --port 20100",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^1.6.15"
+  }
+}
