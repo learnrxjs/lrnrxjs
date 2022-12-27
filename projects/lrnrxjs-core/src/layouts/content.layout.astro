@@ -1,0 +1,181 @@
+---
+import { Debug } from "astro/components"
+import type { MDXLayoutProps } from "astro"
+import type { MenuItem } from "../models";
+import PageLayout from "./page.layout.astro"
+
+type Props = MDXLayoutProps<{
+  title: string;
+}>;
+
+const { frontmatter, headings } = Astro.props as Props
+export const menuSidebarLinks: readonly MenuItem[] = [
+  {
+    type: "GROUP",
+    title: "Обзор",
+    links: [
+      {
+        type: "LINK",
+        title: "Введение",
+        url: "/guide/overview",
+      },
+      {
+        type: "LINK",
+        title: "Потоки",
+        url: "/guide/observables",
+      },
+      {
+        type: "LINK",
+        title: "Наблюдатель",
+        url: "/guide/observer",
+      },
+      {
+        type: "LINK",
+        title: "Операторы",
+        url: "/guide/operators",
+      },
+      {
+        type: "LINK",
+        title: "Подписки",
+        url: "/guide/subscription",
+      },
+      {
+        type: "LINK",
+        title: "Сабжекты",
+        url: "/guide/subject",
+      },
+      {
+        type: "LINK",
+        title: "Шедулеры",
+        url: "/guide/schediler",
+      },
+      {
+        type: "LINK",
+        title: "Marble тестирование",
+        url: "/guide/testing/marble-testing",
+      },
+    ],
+  },
+  {
+    type: "LINK",
+    title: "Установка",
+    url: "/guide/installation",
+  },
+  {
+    type: "LINK",
+    title: "Импортинг",
+    url: "/guide/importing",
+  },
+]
+---
+
+<PageLayout title={ frontmatter.title }>
+  <!-- <Debug {Astro.props} /> -->
+  <main class="sm:grid sm:grid-cols-[1fr_1fr_1fr] items-stretch justify-center">
+    <aside class="hidden sm:block border-r py-12 pr-8">
+      <div>
+        <ul class="flex flex-col gap-2">
+          <li>
+            <details open="">
+              <summary class="font-bold uppercase select-none cursor-pointer">Обзор</summary>
+              <ul class="pl-4">
+                <li>
+                  <a class="sidebar-link is-active" href="/guide/overview">Введение</a>
+                </li>
+                <li>
+                  <a class="sidebar-link" href="/guide/observables">Потоки</a>
+                </li>
+                <li>
+                  <a class="sidebar-link" href="/guide/observer">Наблюдатель</a>
+                </li>
+                <li>
+                  <a class="sidebar-link" href="/guide/operators">Операторы</a>
+                </li>
+                <li>
+                  <a class="sidebar-link" href="/guide/subscription">Подписки</a>
+                </li>
+                <li>
+                  <a class="sidebar-link" href="/guide/subject">Сабжекты</a>
+                </li>
+                <li>
+                  <a class="sidebar-link" href="/guide/schediler">Шедулеры</a>
+                </li>
+                <li>
+                  <a class="sidebar-link" href="/guide/testing/marble-testing">Marble тестирование</a>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <a class="sidebar-link" href="/guide/installation">Установка</a>
+          </li>
+          <li>
+            <a class="sidebar-link" href="/guide/importing">Импортинг</a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <div class="p-4 sm:py-12 sm:px-16">
+      <article class="max-w-[70ch]">
+        <div class="flex flex-col gap-2 mb-8">
+          <h1 class="text-4xl font-bold">{ frontmatter.title }</h1>
+        </div>
+
+        <div class="content prose prose-a:break-words hover:prose-a:no-underline">
+          <slot />
+        </div>
+      </article>
+    </div>
+
+    <aside class="hidden sm:block border-l py-12 pl-8">
+      <div class="sticky top-6 flex flex-col gap-6 text-gray-600">
+        <div>
+          <h2 class="font-bold uppercase mb-2 text-black">Содержание</h2>
+          <ul class="flex flex-col gap-2">
+            {
+              headings.map((header: any) => {
+                return (
+                  <li
+                    class="leading-none"
+                    style={{
+                      "--level": header.depth - 2,
+                      "padding-inline-start": "calc(var(--level) * 1.5rem)",
+                    }}
+                  >
+                    <a class="like-link" href={`#${header.slug}`}>
+                      {header.text.replace(" ⌗", "")}
+                    </a>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="font-bold uppercase mb-2 text-black">Вклад</h2>
+
+          <ul>
+            <li><a class="like-link" href="">Редактировать страницу</a></li>
+            <li><a class="like-link" href="">Помочь с переводом</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="font-bold uppercase mb-2 text-black">Сообщество</h2>
+
+          <ul>
+            <li>
+              <a class="like-link" href=""
+                >Присоединяйтесь к нам в телеграм-чате</a
+              >
+            </li>
+            <li><a class="like-link" href="">Читайте наш блог</a></li>
+            <li><a class="like-link" href="">Гитхаб документации</a></li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+  </main>
+</PageLayout>

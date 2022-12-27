@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Портал изучения технологии RxJS",
   "scripts": {
-    "start": "pnpm --filter \"./projects/*\" run start"
+    "start": "pnpm --filter \"./projects/*\" run start",
+    "start:core": "pnpm --filter \"lrnrxjs-core\" run start"
   },
   "keywords": [
-    "rxjs",
-    "learn"
+    "rxjs"
   ],
   "author": {
     "name": "Sam Bulatov",
@@ -17,5 +17,9 @@
   "engines": {
     "node": ">=16",
     "pnpm": ">=7"
+  },
+  "devDependencies": {
+    "@astrojs/solid-js": "1.2.3",
+    "solid-js": "^1.5.1"
   }
 }

@@ -1,0 +1,13 @@
+---
+import ApiIndexPage from "../../components/api-index-page.svelte";
+import PageLayout from "../../layouts/page-layout.astro";
+import { makeApiEntity,packApiEntities } from "../../lib";
+import type { ApiEntity } from "../../models";
+
+const entityFiles = (await Astro.glob<ApiEntity>("./**/*.md")).map((f) => makeApiEntity(f));
+const apiPackages = packApiEntities(entityFiles);
+---
+
+<PageLayout title="API">
+  <ApiIndexPage apiPackages={apiPackages} client:load />
+</PageLayout>

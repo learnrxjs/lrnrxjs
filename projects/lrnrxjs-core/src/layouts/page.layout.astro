@@ -1,0 +1,21 @@
+---
+import { Footer, Header } from "../components"
+import BaseLayout from "./dumb.layout.astro"
+
+type Props = {
+  title: string
+}
+
+const { title } = Astro.props as Props
+const currentPath = new URL(Astro.url).pathname
+---
+
+<BaseLayout title={ title }>
+  <Header currentPagePathname={ currentPath } />
+
+  <div class="wrap">
+    <slot />
+  </div>
+  
+  <Footer />
+</BaseLayout>
