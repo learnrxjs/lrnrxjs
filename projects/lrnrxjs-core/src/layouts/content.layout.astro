@@ -3,12 +3,14 @@ import { Debug } from "astro/components"
 import type { MDXLayoutProps } from "astro"
 import type { MenuItem } from "../models";
 import PageLayout from "./page.layout.astro"
+import { SidebarMenu } from "../components"
 
 type Props = MDXLayoutProps<{
   title: string;
 }>;
 
 const { frontmatter, headings } = Astro.props as Props
+const currentUrl: URL = Astro.url
 export const menuSidebarLinks: readonly MenuItem[] = [
   {
     type: "GROUP",
@@ -74,45 +76,7 @@ export const menuSidebarLinks: readonly MenuItem[] = [
   <main class="sm:grid sm:grid-cols-[1fr_1fr_1fr] items-stretch justify-center">
     <aside class="hidden sm:block border-r py-12 pr-8">
       <div>
-        <ul class="flex flex-col gap-2">
-          <li>
-            <details open="">
-              <summary class="font-bold uppercase select-none cursor-pointer">Обзор</summary>
-              <ul class="pl-4">
-                <li>
-                  <a class="sidebar-link is-active" href="/guide/overview">Введение</a>
-                </li>
-                <li>
-                  <a class="sidebar-link" href="/guide/observables">Потоки</a>
-                </li>
-                <li>
-                  <a class="sidebar-link" href="/guide/observer">Наблюдатель</a>
-                </li>
-                <li>
-                  <a class="sidebar-link" href="/guide/operators">Операторы</a>
-                </li>
-                <li>
-                  <a class="sidebar-link" href="/guide/subscription">Подписки</a>
-                </li>
-                <li>
-                  <a class="sidebar-link" href="/guide/subject">Сабжекты</a>
-                </li>
-                <li>
-                  <a class="sidebar-link" href="/guide/schediler">Шедулеры</a>
-                </li>
-                <li>
-                  <a class="sidebar-link" href="/guide/testing/marble-testing">Marble тестирование</a>
-                </li>
-              </ul>
-            </details>
-          </li>
-          <li>
-            <a class="sidebar-link" href="/guide/installation">Установка</a>
-          </li>
-          <li>
-            <a class="sidebar-link" href="/guide/importing">Импортинг</a>
-          </li>
-        </ul>
+        <SidebarMenu currentPageUrl={ currentUrl } />
       </div>
     </aside>
 
@@ -156,7 +120,7 @@ export const menuSidebarLinks: readonly MenuItem[] = [
         <div>
           <h2 class="font-bold uppercase mb-2 text-black">Вклад</h2>
 
-          <ul>
+          <ul class="flex flex-col gap-2">
             <li><a class="like-link" href="">Редактировать страницу</a></li>
             <li><a class="like-link" href="">Помочь с переводом</a></li>
           </ul>
@@ -165,7 +129,7 @@ export const menuSidebarLinks: readonly MenuItem[] = [
         <div>
           <h2 class="font-bold uppercase mb-2 text-black">Сообщество</h2>
 
-          <ul>
+          <ul class="flex flex-col gap-2">
             <li>
               <a class="like-link" href=""
                 >Присоединяйтесь к нам в телеграм-чате</a

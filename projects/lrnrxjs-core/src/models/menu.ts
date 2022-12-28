@@ -1,6 +1,7 @@
 export interface MenuGroup {
   type: "GROUP"
   title: string
+  opened: boolean
   links: readonly MenuLink[]
 }
 

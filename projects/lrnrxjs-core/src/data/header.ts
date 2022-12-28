@@ -1,4 +1,4 @@
-import { MenuLink } from "../models"
+import type { MenuLink } from "../models"
 
 export const HEADER_MENU_LINKS: readonly MenuLink[] = [
   {
